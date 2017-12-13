@@ -1,23 +1,29 @@
 package ovoce.thedrake.ui;
 
-import ovoce.thedrake.game.GameState;
-import ovoce.thedrake.game.Move;
-import ovoce.thedrake.game.TilePosition;
+import javafx.util.Builder;
+import ovoce.thedrake.game.*;
+
 import java.util.List;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
-public class BoardView extends GridPane implements TileContext {
+public class BoardView extends GridPane implements TileContext, Builder {
   private GameState state;
   private TileView selected;
-  
-  public BoardView(GameState state) {
+
+    public BoardView() {
+        super();
+    }
+
+    public BoardView(GameState state) {
 	this.state = state;
 	
 	this.setHgap(5);
 	this.setVgap(5);
 	this.setPadding(new Insets(5));
+	this.setAlignment(Pos.CENTER);
 	
 	for(int y = 0; y < 4; y++) {
 	  for(int x = 0; x < 4; x++) {
@@ -68,6 +74,35 @@ public class BoardView extends GridPane implements TileContext {
 	  view.update();
 	}
   }
-  
-  
+
+	@Override
+	public Object build() {
+		GameState state = createTestGame();
+		return new BoardView(state);
+	}
+
+	private Board createTestBoard() {
+		StandardDrakeSetup setup = new StandardDrakeSetup();
+		Board board = new Board(
+				4,
+				new CapturedTroops(),
+				new TroopTile(new TilePosition("a1"), new Troop(setup.MONK, PlayingSide.BLUE)),
+				new TroopTile(new TilePosition("b1"), new Troop(setup.DRAKE, PlayingSide.BLUE)),
+				new TroopTile(new TilePosition("a2"), new Troop(setup.SPEARMAN, PlayingSide.BLUE)),
+				new TroopTile(new TilePosition("c2"), new Troop(setup.CLUBMAN, PlayingSide.BLUE)),
+				new TroopTile(new TilePosition("a4"), new Troop(setup.ARCHER, PlayingSide.ORANGE, TroopFace.BACK)),
+				new TroopTile(new TilePosition("b4"), new Troop(setup.DRAKE, PlayingSide.ORANGE, TroopFace.BACK)),
+				new TroopTile(new TilePosition("c3"), new Troop(setup.SWORDSMAN, PlayingSide.ORANGE)));
+		return board;
+	}
+
+	private GameState createTestGame() {
+		Board board = createTestBoard();
+		StandardDrakeSetup setup = new StandardDrakeSetup();
+		return new MiddleGameState(
+				board,
+				new BasicTroopStacks(setup.CLUBMAN),
+				new BothLeadersPlaced(new TilePosition("b1"), new TilePosition("b4")),
+				PlayingSide.BLUE);
+	}
 }

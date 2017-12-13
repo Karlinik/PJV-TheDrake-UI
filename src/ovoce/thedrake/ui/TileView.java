@@ -38,7 +38,7 @@ public class TileView extends Pane {
 	this.moveImage = new ImageView(getClass().getResource("/assets/move.png").toString());
 	moveImage.setVisible(false);
 	
-	this.setPrefSize(200, 100);
+	this.setPrefSize(100, 100);
 	this.setMinSize(USE_PREF_SIZE, USE_PREF_SIZE);
 	this.setMaxSize(USE_PREF_SIZE, USE_PREF_SIZE);
 	this.getChildren().add(moveImage);
