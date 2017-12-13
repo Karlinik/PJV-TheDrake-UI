@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovoce.thedrake.ui.menu.MenuController">
+    <stylesheets>
+        <URL value="@../styles.css" />
+    </stylesheets>
+    <children>
+      <BorderPane id="menu-wrapper" layoutX="-1.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1024.0">
+         <top>
+            <Pane prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="203.0" fitWidth="374.0" layoutX="327.0" layoutY="-3.0">
+                     <image>
+                        <Image url="@../media/TheDrakeLogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+         <center>
+            <GridPane alignment="TOP_CENTER" prefHeight="146.0" prefWidth="503.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-item-wrapper">
+                     <children>
+                        <Button minWidth="0.0" onAction="#startMultiplayer" mnemonicParsing="false" onMouseEntered="#showMultiplayer" onMouseExited="#hideLabel" prefHeight="82.0" styleClass="menu-item" textAlignment="CENTER" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="146.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/multiplayer.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-item-wrapper" GridPane.columnIndex="1">
+                     <children>
+                        <Button id="computer-button" mnemonicParsing="false" onMouseEntered="#showComputer" onMouseExited="#hideLabel" prefHeight="91.0" prefWidth="225.0" styleClass="menu-item" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="129.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/computer.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-item-wrapper" GridPane.rowIndex="1">
+                     <children>
+                        <Button id="internet-button" mnemonicParsing="false" onMouseEntered="#showInternet" onMouseExited="#hideLabel" prefHeight="171.0" prefWidth="293.0" styleClass="menu-item" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="143.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/internet.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-item-wrapper" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Button id="exit-button" mnemonicParsing="false" onAction="#exit" onMouseEntered="#showExit" onMouseExited="#hideLabel" prefHeight="169.0" prefWidth="190.0" styleClass="menu-item" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="128.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/exit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </center>
+         <left>
+            <Pane prefHeight="419.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="419.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <HBox alignment="TOP_CENTER" prefHeight="114.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label id="menu-label" fx:id="label" alignment="TOP_CENTER" />
+               </children></HBox>
+         </bottom></BorderPane>
+   </children>
+</AnchorPane>

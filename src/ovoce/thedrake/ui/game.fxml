@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovoce.thedrake.ui.GameController">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+    <children>
+        <BorderPane id="menu-wrapper" layoutX="-1.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1024.0">
+            <top>
+                <Pane prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="203.0" fitWidth="374.0" layoutX="327.0" layoutY="-3.0">
+                            <image>
+                                <Image url="@media/TheDrakeLogo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </top>
+            <bottom>
+                <!--vyrazeni blue&orange-->
+            </bottom>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane id="captured-blue" prefHeight="200.0" prefWidth="512.0" />
+                  <Pane id="captured-orange" prefHeight="200.0" prefWidth="512.0" />
+               </children>
+            </HBox>
+         </bottom>
+         <left>
+            <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+         </right>
+        </BorderPane>
+    </children>
+</AnchorPane>
