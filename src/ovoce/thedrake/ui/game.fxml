@@ -37,8 +37,9 @@
             <bottom>
                 <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Pane id="captured-blue" prefHeight="200.0" prefWidth="512.0" />
-                        <Pane id="captured-orange" prefHeight="200.0" prefWidth="512.0" />
+                        <Pane id="captured-blue" prefHeight="200.0" prefWidth="341.0" />
+                        <Pane id="info-panel" prefHeight="200.0" prefWidth="341.0" />
+                        <Pane id="captured-orange" prefHeight="200.0" prefWidth="341.0" />
                     </children>
                 </HBox>
             </bottom>

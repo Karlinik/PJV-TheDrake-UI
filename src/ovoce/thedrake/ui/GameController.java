@@ -30,6 +30,7 @@ public class GameController extends TheDrakeApplication implements Initializable
 
     public void blueStackClicked() {
         boardView.stackSelected = true;
+        if (boardView.selected != null) boardView.selected.unselect();
         if (boardView.state.sideOnTurn() == PlayingSide.BLUE) {
             troopStackBlue.addBorder();
             boardView.showMoves(boardView.state.allMoves());
@@ -38,6 +39,7 @@ public class GameController extends TheDrakeApplication implements Initializable
 
     public void orangeStackClicked() {
         boardView.stackSelected = true;
+        if (boardView.selected != null) boardView.selected.unselect();
         if (boardView.state.sideOnTurn() == PlayingSide.ORANGE) {
             troopStackOrange.addBorder();
             boardView.showMoves(boardView.state.allMoves());

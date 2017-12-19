@@ -14,7 +14,7 @@ public class BoardView extends GridPane implements TileContext, Builder {
     private StackContext stackContextBlue;
     private StackContext stackContextOrange;
     public GameState state;
-    private TileView selected;
+    public TileView selected;
 
     public BoardView() {
         super();
@@ -52,6 +52,10 @@ public class BoardView extends GridPane implements TileContext, Builder {
 
     @Override
     public void tileSelected(TileView view) {
+        stackSelected = false;
+        stackContextOrange.removeBorder();
+        stackContextBlue.removeBorder();
+
         if(selected != null && selected != view) {
             selected.unselect();
         }
@@ -70,6 +74,8 @@ public class BoardView extends GridPane implements TileContext, Builder {
 
         clearMoves();
         stackSelected = false;
+        stackContextOrange.removeBorder();
+        stackContextBlue.removeBorder();
 
         if (state.isVictory()) System.out.println("Victory!!!");
 
@@ -96,26 +102,24 @@ public class BoardView extends GridPane implements TileContext, Builder {
             }
         }
         else if (state instanceof PlacingGuardsGameState) {
+            state = ((PlacingGuardsGameState) state).placeGuard(move.target());
             if (state.sideOnTurn() == PlayingSide.BLUE) {
-                state = ((PlacingGuardsGameState) state).placeGuard(move.target());
                 stackContextBlue.removeBorder();
                 stackContextBlue.changeTroop(state.troopStacks().peek(PlayingSide.BLUE));
             }
             else {
-                state = ((PlacingGuardsGameState) state).placeGuard(move.target());
                 stackContextOrange.removeBorder();
                 stackContextOrange.changeTroop(state.troopStacks().peek(PlayingSide.ORANGE));
             }
         }
         else {
             if (stackSelected) {
+                state = ((MiddleGameState) state).placeFromStack(move.target());
                 if (state.sideOnTurn() == PlayingSide.BLUE) {
-                    state = ((MiddleGameState) state).placeFromStack(move.target());
                     stackContextBlue.removeBorder();
                     stackContextBlue.changeTroop(state.troopStacks().peek(PlayingSide.BLUE));
                 }
                 else {
-                    state = ((MiddleGameState) state).placeFromStack(move.target());
                     stackContextOrange.removeBorder();
                     stackContextOrange.changeTroop(state.troopStacks().peek(PlayingSide.ORANGE));
                 }
@@ -145,31 +149,4 @@ public class BoardView extends GridPane implements TileContext, Builder {
         this.stackContextBlue = stackContextBlue;
         this.stackContextOrange = stackContextOrange;
     }
-
-
-
-//	private Board createTestBoard() {
-//		StandardDrakeSetup setup = new StandardDrakeSetup();
-//		Board board = new Board(
-//				4,
-//				new CapturedTroops(),
-//				new TroopTile(new TilePosition("a1"), new Troop(setup.MONK, PlayingSide.BLUE)),
-//				new TroopTile(new TilePosition("b1"), new Troop(setup.DRAKE, PlayingSide.BLUE)),
-//				new TroopTile(new TilePosition("a2"), new Troop(setup.SPEARMAN, PlayingSide.BLUE)),
-//				new TroopTile(new TilePosition("c2"), new Troop(setup.CLUBMAN, PlayingSide.BLUE)),
-//				new TroopTile(new TilePosition("a4"), new Troop(setup.ARCHER, PlayingSide.ORANGE, TroopFace.BACK)),
-//				new TroopTile(new TilePosition("b4"), new Troop(setup.DRAKE, PlayingSide.ORANGE, TroopFace.BACK)),
-//				new TroopTile(new TilePosition("c3"), new Troop(setup.SWORDSMAN, PlayingSide.ORANGE)));
-//		return board;
-//	}
-//
-//	private GameState createTestGame() {
-//		Board board = createTestBoard();
-//		StandardDrakeSetup setup = new StandardDrakeSetup();
-//		return new MiddleGameState(
-//				board,
-//				new BasicTroopStacks(setup.CLUBMAN),
-//				new BothLeadersPlaced(new TilePosition("b1"), new TilePosition("b4")),
-//				PlayingSide.BLUE);
-//	}
 }
