@@ -12,6 +12,8 @@
 <?import javafx.scene.image.Image?>
 
 <?import ovoce.thedrake.ui.BoardView?>
+<?import ovoce.thedrake.ui.TroopStackView?>
+
 <AnchorPane prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovoce.thedrake.ui.GameController">
     <stylesheets>
         <URL value="@styles.css" />
@@ -30,7 +32,7 @@
                 </Pane>
             </top>
             <center>
-                <BoardView />
+                <BoardView fx:id="boardView"/>
             </center>
             <bottom>
                 <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -41,10 +43,14 @@
                 </HBox>
             </bottom>
             <left>
-                <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+                <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+                    <TroopStackView fx:id="troopStackBlue" onMouseClicked="#blueStackClicked" />
+                </VBox>
             </left>
             <right>
-                <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+                <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER" >
+                    <TroopStackView fx:id="troopStackOrange" onMouseClicked="#orangeStackClicked" />
+                </VBox>
             </right>
         </BorderPane>
     </children>

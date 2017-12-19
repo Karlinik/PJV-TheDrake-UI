@@ -83,7 +83,7 @@ public class TileView extends Pane {
   }
   
   private void onClicked() {
-	if(move != null)
+      if(move != null)
 	  context.execute(move);
 	else if(tile.hasTroop())
 	  select();

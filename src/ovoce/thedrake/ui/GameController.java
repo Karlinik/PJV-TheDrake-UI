@@ -2,35 +2,45 @@ package ovoce.thedrake.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.SubScene;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.ImageView;
 import ovoce.thedrake.game.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameController extends TheDrakeApplication implements Initializable {
-    @FXML private SubScene gameScene;
-    @FXML private GridPane gameBoard;
+    @FXML private TroopStackView troopStackBlue;
+    @FXML private TroopStackView troopStackOrange;
+    @FXML private BoardView boardView;
 
-    public GameController() {
-//        this.gameBoard = new BoardView(state);
-//        this.gameScene.setRoot(new Parent(gameBoard));
-    }
+    public GameController() {}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        createNewGame();
+    }
+
+    private void createNewGame() {
+        StandardDrakeSetup setup = new StandardDrakeSetup();
+        troopStackBlue.changeTroop(new Troop(setup.DRAKE, PlayingSide.BLUE));
+        troopStackOrange.changeTroop(new Troop(setup.DRAKE, PlayingSide.ORANGE));
+        boardView.setStackContexts(troopStackBlue, troopStackOrange);
 
     }
 
-//    public void start() {
-//        GameState state = createTestGame();
-//
-//        BoardView boardView = new BoardView(state);
-//        Scene scene = new Scene(boardView);
-//        mainStage.setScene(scene);
-//        mainStage.show();
-//    }
+    public void blueStackClicked() {
+        boardView.stackSelected = true;
+        if (boardView.state.sideOnTurn() == PlayingSide.BLUE) {
+            troopStackBlue.addBorder();
+            boardView.showMoves(boardView.state.allMoves());
+        }
+    }
+
+    public void orangeStackClicked() {
+        boardView.stackSelected = true;
+        if (boardView.state.sideOnTurn() == PlayingSide.ORANGE) {
+            troopStackOrange.addBorder();
+            boardView.showMoves(boardView.state.allMoves());
+        }
+    }
 }
