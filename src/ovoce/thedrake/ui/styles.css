@@ -22,7 +22,7 @@
     -fx-cursor: hand;
 }
 
-#menu-label {
+#menu-label, #captured-blue-label, #captured-orange-label, #main-label {
     -fx-padding: 0.5em;
     -fx-font-size: 2.5em;
     -fx-font-family: impact;
@@ -32,4 +32,35 @@
 
 #info-panel {
     -fx-alignment: center;
+}
+
+#captured-orange {
+    -fx-alignment: center-right;
+}
+
+#captured-blue {
+    -fx-alignment: center-left;
+}
+
+#back-to-menu-button {
+    -fx-border-color: white;
+    -fx-border-style: solid;
+    -fx-border-width: 0.2em;
+    -fx-background-color: #794b89;
+    -fx-effect: dropshadow(gaussian, black, 8, 0.0, 2, 0);
+    -fx-border-radius: 0.5em;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: impact;
+    -fx-font-size: 1.5em;
+}
+
+.troop-stack {
+    -fx-alignment: center;
+}
+
+.troop-stack-item {
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 2em;
 }

@@ -24,7 +24,7 @@ public class TileView extends Pane {
   private final TileBackgrounds backgrounds;
   private final Border selectBorder = new Border(
 		  new BorderStroke(
-				  Color.BLACK, 
+				  Color.RED,
 				  BorderStrokeStyle.SOLID, 
 				  CornerRadii.EMPTY, 
 				  new BorderWidths(3)));

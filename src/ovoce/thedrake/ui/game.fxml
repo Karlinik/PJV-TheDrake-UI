@@ -37,27 +37,27 @@
             <bottom>
                 <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Pane id="captured-blue" prefHeight="200.0" prefWidth="341.0">
-                            <Label fx:id="capturedBlueLabel" id="capturedBlueLabel"></Label>
-                        </Pane>
-                        <VBox id="info-panel" prefHeight="200.0" prefWidth="341.0">
-                            <Label fx:id="mainLabel" id="mainLabel"></Label>
-                            <Button onMouseClicked="#backToMenu">Zpět do menu</Button>
+                        <VBox id="captured-blue" prefHeight="200.0" prefWidth="341.0">
+                            <Label fx:id="capturedBlueLabel" id="captured-blue-label"></Label>
                         </VBox>
-                        <Pane id="captured-orange" prefHeight="200.0" prefWidth="341.0">
-                            <Label fx:id="capturedOrangeLabel" id="capturedOrangeLabel"></Label>
-                        </Pane>
+                        <VBox id="info-panel" prefHeight="200.0" prefWidth="341.0">
+                            <Label fx:id="mainLabel" id="main-label"></Label>
+                            <Button onMouseClicked="#backToMenu" id="back-to-menu-button">Zpět do menu</Button>
+                        </VBox>
+                        <VBox id="captured-orange" prefHeight="200.0" prefWidth="341.0">
+                            <Label fx:id="capturedOrangeLabel" id="captured-orange-label"></Label>
+                        </VBox>
                     </children>
                 </HBox>
             </bottom>
             <left>
-                <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER">
-                    <TroopStackView fx:id="troopStackBlue" onMouseClicked="#blueStackClicked" />
+                <VBox styleClass="troop-stack" prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+                    <TroopStackView styleClass="troop-stack-item" fx:id="troopStackBlue" onMouseClicked="#blueStackClicked" />
                 </VBox>
             </left>
             <right>
-                <VBox prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER" >
-                    <TroopStackView fx:id="troopStackOrange" onMouseClicked="#orangeStackClicked" />
+                <VBox styleClass="troop-stack" prefHeight="200.0" prefWidth="227.0" BorderPane.alignment="CENTER" >
+                    <TroopStackView styleClass="troop-stack-item" fx:id="troopStackOrange" onMouseClicked="#orangeStackClicked" />
                 </VBox>
             </right>
         </BorderPane>

@@ -40,11 +40,12 @@ public class GameController extends TheDrakeApplication implements Initializable
         boardView.setLabelContext(this);
         capturedBlue = 0;
         capturedOrange = 0;
-        capturedBlueLabel.setText(Integer.toString(capturedBlue));
-        capturedOrangeLabel.setText(Integer.toString(capturedOrange));
+        capturedBlueLabel.setText("Modrý: " + Integer.toString(capturedBlue));
+        capturedOrangeLabel.setText("Oranžový: " + Integer.toString(capturedOrange));
     }
 
     public void blueStackClicked() {
+        if (troopStackBlue.empty) return;
         boardView.stackSelected = true;
         if (boardView.selected != null) boardView.selected.unselect();
         if (boardView.state.sideOnTurn() == PlayingSide.BLUE) {
@@ -54,6 +55,7 @@ public class GameController extends TheDrakeApplication implements Initializable
     }
 
     public void orangeStackClicked() {
+        if (troopStackOrange.empty) return;
         boardView.stackSelected = true;
         if (boardView.selected != null) boardView.selected.unselect();
         if (boardView.state.sideOnTurn() == PlayingSide.ORANGE) {
@@ -75,11 +77,11 @@ public class GameController extends TheDrakeApplication implements Initializable
 
     @Override
     public void addCapturedBlue() {
-        capturedBlueLabel.setText(Integer.toString(++capturedBlue));
+        capturedBlueLabel.setText("Modrý: " + Integer.toString(++capturedBlue));
     }
 
     @Override
     public void addCapturedOrange() {
-        capturedOrangeLabel.setText(Integer.toString(++capturedOrange));
+        capturedOrangeLabel.setText("Oranžový: " + Integer.toString(++capturedOrange));
     }
 }

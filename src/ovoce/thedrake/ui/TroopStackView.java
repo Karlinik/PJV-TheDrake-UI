@@ -1,22 +1,26 @@
 package ovoce.thedrake.ui;
 
-import javafx.event.EventHandler;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Builder;
 import ovoce.thedrake.game.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TroopStackView extends HBox implements StackContext, Builder {
+    public boolean empty;
+
     private TroopStacks troops;
     private Troop troopOnTop;
+    private final Border defaultBorder = new Border(
+            new BorderStroke(
+                    Color.BLACK,
+                    BorderStrokeStyle.SOLID,
+                    CornerRadii.EMPTY,
+                    new BorderWidths(1)));
 
     public TroopStackView() {
         super();
+        this.setBorder(defaultBorder);
+        this.empty = false;
     }
 
     @Override
@@ -40,7 +44,7 @@ public class TroopStackView extends HBox implements StackContext, Builder {
     public void addBorder() {
         this.setBorder(new Border(
                 new BorderStroke(
-                        Color.BLACK,
+                        Color.RED,
                         BorderStrokeStyle.SOLID,
                         CornerRadii.EMPTY,
                         new BorderWidths(3))));
@@ -48,10 +52,13 @@ public class TroopStackView extends HBox implements StackContext, Builder {
 
     @Override
     public void removeBorder() {
-        this.setBorder(null);
+        if (!empty) this.setBorder(defaultBorder);
     }
 
-    public void setTroops(TroopStacks troops) {
-        this.troops = troops;
+    @Override
+    public void lastTroop() {
+        this.empty = true;
+        this.setBackground(null);
+        this.setBorder(null);
     }
 }

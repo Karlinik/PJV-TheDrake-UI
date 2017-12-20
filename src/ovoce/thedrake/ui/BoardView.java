@@ -78,7 +78,7 @@ public class BoardView extends GridPane implements TileContext, Builder {
         stackContextOrange.removeBorder();
         stackContextBlue.removeBorder();
 
-        if (state.isVictory()) labelContext.setMainLabel(state.sideOnTurn().opposite() + " wins!");
+        if (state.isVictory()) labelContext.setMainLabel(state.sideOnTurn().opposite() + " vyhrává!");
 
             for(Node n : getChildren()) {
             TileView view = (TileView)n;
@@ -104,7 +104,7 @@ public class BoardView extends GridPane implements TileContext, Builder {
         }
         else if (state instanceof PlacingGuardsGameState) {
             state = ((PlacingGuardsGameState) state).placeGuard(move.target());
-            if (state.sideOnTurn() == PlayingSide.BLUE) {
+            if (state.sideOnTurn().opposite() == PlayingSide.BLUE) {
                 stackContextBlue.removeBorder();
                 stackContextBlue.changeTroop(state.troopStacks().peek(PlayingSide.BLUE));
             }
@@ -116,19 +116,21 @@ public class BoardView extends GridPane implements TileContext, Builder {
         else {
             if (stackSelected) {
                 state = ((MiddleGameState) state).placeFromStack(move.target());
-                if (state.sideOnTurn() == PlayingSide.BLUE) {
+                if (state.sideOnTurn().opposite() == PlayingSide.BLUE) {
                     stackContextBlue.removeBorder();
-                    stackContextBlue.changeTroop(state.troopStacks().peek(PlayingSide.BLUE));
+                    if (!state.troopStacks().troops(PlayingSide.BLUE).isEmpty()) stackContextBlue.changeTroop(state.troopStacks().peek(PlayingSide.BLUE));
+                    else stackContextBlue.lastTroop();
                 }
                 else {
                     stackContextOrange.removeBorder();
-                    stackContextOrange.changeTroop(state.troopStacks().peek(PlayingSide.ORANGE));
+                    if (!state.troopStacks().troops(PlayingSide.ORANGE).isEmpty()) stackContextOrange.changeTroop(state.troopStacks().peek(PlayingSide.ORANGE));
+                    else stackContextOrange.lastTroop();
                 }
             }
             else {
                 if (state.board().tileAt(move.target()).hasTroop())
-                    if (state.sideOnTurn() == PlayingSide.BLUE) labelContext.addCapturedOrange();
-                    else labelContext.addCapturedBlue();
+                    if (state.sideOnTurn() == PlayingSide.BLUE) labelContext.addCapturedBlue();
+                    else labelContext.addCapturedOrange();
                 selected.unselect();
                 selected = null;
                 this.state = move.resultState();
