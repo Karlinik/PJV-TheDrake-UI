@@ -29,3 +29,7 @@
     -fx-text-fill: black;
     -fx-effect: dropshadow(gaussian, white, 2, 1, 1, 1);
 }
+
+#info-panel {
+    -fx-alignment: center;
+}

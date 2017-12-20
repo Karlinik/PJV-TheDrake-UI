@@ -13,6 +13,7 @@ public class BoardView extends GridPane implements TileContext, Builder {
     public boolean stackSelected;
     private StackContext stackContextBlue;
     private StackContext stackContextOrange;
+    private LabelContext labelContext;
     public GameState state;
     public TileView selected;
 
@@ -77,7 +78,7 @@ public class BoardView extends GridPane implements TileContext, Builder {
         stackContextOrange.removeBorder();
         stackContextBlue.removeBorder();
 
-        if (state.isVictory()) System.out.println("Victory!!!");
+        if (state.isVictory()) labelContext.setMainLabel(state.sideOnTurn().opposite() + " wins!");
 
             for(Node n : getChildren()) {
             TileView view = (TileView)n;
@@ -125,6 +126,9 @@ public class BoardView extends GridPane implements TileContext, Builder {
                 }
             }
             else {
+                if (state.board().tileAt(move.target()).hasTroop())
+                    if (state.sideOnTurn() == PlayingSide.BLUE) labelContext.addCapturedOrange();
+                    else labelContext.addCapturedBlue();
                 selected.unselect();
                 selected = null;
                 this.state = move.resultState();
@@ -148,5 +152,9 @@ public class BoardView extends GridPane implements TileContext, Builder {
     public void setStackContexts(StackContext stackContextBlue, StackContext stackContextOrange) {
         this.stackContextBlue = stackContextBlue;
         this.stackContextOrange = stackContextOrange;
+    }
+
+    public void setLabelContext(LabelContext labelContext) {
+        this.labelContext = labelContext;
     }
 }

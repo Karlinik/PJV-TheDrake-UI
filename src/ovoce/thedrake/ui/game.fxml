@@ -37,9 +37,16 @@
             <bottom>
                 <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Pane id="captured-blue" prefHeight="200.0" prefWidth="341.0" />
-                        <Pane id="info-panel" prefHeight="200.0" prefWidth="341.0" />
-                        <Pane id="captured-orange" prefHeight="200.0" prefWidth="341.0" />
+                        <Pane id="captured-blue" prefHeight="200.0" prefWidth="341.0">
+                            <Label fx:id="capturedBlueLabel" id="capturedBlueLabel"></Label>
+                        </Pane>
+                        <VBox id="info-panel" prefHeight="200.0" prefWidth="341.0">
+                            <Label fx:id="mainLabel" id="mainLabel"></Label>
+                            <Button onMouseClicked="#backToMenu">Zpět do menu</Button>
+                        </VBox>
+                        <Pane id="captured-orange" prefHeight="200.0" prefWidth="341.0">
+                            <Label fx:id="capturedOrangeLabel" id="capturedOrangeLabel"></Label>
+                        </Pane>
                     </children>
                 </HBox>
             </bottom>

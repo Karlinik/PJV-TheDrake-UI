@@ -28,6 +28,12 @@ public class TileView extends Pane {
 				  BorderStrokeStyle.SOLID, 
 				  CornerRadii.EMPTY, 
 				  new BorderWidths(3)));
+  private final Border defaultBorder = new Border(
+          new BorderStroke(
+                  Color.BLACK,
+                  BorderStrokeStyle.SOLID,
+                  CornerRadii.EMPTY,
+                  new BorderWidths(1)));
   
   public TileView(TileContext context, Tile tile) {
 	this.context = context;
@@ -41,6 +47,7 @@ public class TileView extends Pane {
 	this.setPrefSize(100, 100);
 	this.setMinSize(USE_PREF_SIZE, USE_PREF_SIZE);
 	this.setMaxSize(USE_PREF_SIZE, USE_PREF_SIZE);
+	this.setBorder(defaultBorder);
 	this.getChildren().add(moveImage);
 	this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	  @Override
@@ -69,7 +76,7 @@ public class TileView extends Pane {
   }
   
   public void unselect() {
-	this.setBorder(null);
+	this.setBorder(defaultBorder);
   }
 
   public void setMove(Move move) {

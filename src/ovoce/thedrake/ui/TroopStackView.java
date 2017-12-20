@@ -6,14 +6,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Builder;
-import ovoce.thedrake.game.PlayingSide;
-import ovoce.thedrake.game.StandardDrakeSetup;
-import ovoce.thedrake.game.Troop;
+import ovoce.thedrake.game.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TroopStackView extends Pane implements StackContext, Builder {
+public class TroopStackView extends HBox implements StackContext, Builder {
+    private TroopStacks troops;
     private Troop troopOnTop;
 
     public TroopStackView() {
@@ -50,5 +49,9 @@ public class TroopStackView extends Pane implements StackContext, Builder {
     @Override
     public void removeBorder() {
         this.setBorder(null);
+    }
+
+    public void setTroops(TroopStacks troops) {
+        this.troops = troops;
     }
 }
